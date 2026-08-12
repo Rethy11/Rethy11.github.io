@@ -1,0 +1,25 @@
+# rethy11 — Engineering Portfolio
+
+> A one-person engineering portfolio hosted on GitHub Pages. Indexes five solo-built projects: a puzzle generator, a game engine, an auth/2FA flow, a performance diagnostics tool, and a minimal search redirector. This site is a static index page — it does not itself run any of the linked projects' code.
+
+Each linked project has its own scope, repo, and (where relevant) its own Terms of Use and Privacy Policy.
+
+## Pages
+
+- [Home](https://rethy11.github.io/index.html): Project index listing all five shipped systems with descriptions and technical highlights.
+- [About](https://rethy11.github.io/about.html): What this site is, contact info, and links to policies.
+- [Privacy Policy](https://rethy11.github.io/privacy.html): Privacy policy for this index page.
+- [Terms of Use](https://rethy11.github.io/terms.html): Terms of use for this index page.
+
+## Projects
+
+- [Owldoku](https://owldoku.com): Queens-style puzzle game with a custom constraint-satisfaction generator and a "No Lines" diagonal-exclusivity mode.
+- [Slime Sliders](https://rethy11.github.io/Slime-Sliders): ~12,000-line canvas-based game engine with custom physics and procedural level generation.
+- [Access](https://rethy11.github.io/phone-verif): Password-and-phone-gated demo using Firebase Phone Authentication (SMS OTP) and reCAPTCHA.
+- [Load-Watt](https://rethy11.github.io/Load-Watt): Browser performance and power-diagnostics tool with runtime instrumentation and sandboxed profiling.
+- [Slopless](https://rethy11.github.io/Slopless): Minimal, fast, privacy-conscious search redirector with no analytics or telemetry.
+
+## Contact
+
+- Instagram: [plasticinegames](https://instagram.com/plasticinegames)
+- GitHub: [rethy11](https://github.com/rethy11)
