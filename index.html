@@ -3,661 +3,725 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>rethy11 — Engineering Portfolio</title>
-<meta name="description" content="Project index: Owldoku, Slime Sliders, Access, Load-Watt, and Slopless.">
+<title>Ryan Guendjoian — Information Security &amp; GRC Analyst</title>
+<meta name="description" content="Ryan Guendjoian — entry-level Information Security &amp; GRC analyst. CompTIA Security+ certified, with hands-on risk assessment, control validation, and five independently shipped technical projects.">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="rethy11 — Engineering Portfolio">
-<meta property="og:description" content="Five shipped systems, no BS. Solo-built engines, generators, diagnostics, and auth.">
+<meta property="og:title" content="Ryan Guendjoian — Information Security & GRC Analyst">
+<meta property="og:description" content="CompTIA Security+ certified GRC analyst. Risk assessments, control validation, and framework alignment — backed by five solo-built technical projects.">
 <meta property="og:image" content="og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="rethy11 — Engineering Portfolio">
-<meta name="twitter:description" content="Five shipped systems, no BS. Solo-built engines, generators, diagnostics, and auth.">
+<meta name="twitter:title" content="Ryan Guendjoian — Information Security & GRC Analyst">
+<meta name="twitter:description" content="CompTIA Security+ certified GRC analyst. Risk assessments, control validation, and framework alignment — backed by five solo-built technical projects.">
 <meta name="twitter:image" content="og-image.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0b101d;
-    --bg-alt:#080c16;
-    --surface:#121a2c;
-    --surface-2:#17203553;
-    --text:#e9e7e2;
-    --muted:#8d96ab;
-    --muted-2:#7b84a0;
-    --accent:#e0a458;
-    --accent-soft:rgba(224,164,88,0.14);
-    --teal:#5fb8b0;
-    --border:rgba(233,231,226,0.09);
-    --border-strong:rgba(233,231,226,0.16);
-    --note-bg:rgba(224,164,88,0.07);
-    --max-w:1040px;
+    --bg: #08090b;
+    --line: rgba(255,255,255,0.09);
+    --line-soft: rgba(255,255,255,0.055);
+    --text: #eef1f2;
+    --muted: #8a959c;
+    --muted-dim: #626b70;
+    --accent: #5eeadb;
+    --accent-2: #4dd0c4;
+    --accent-dim: rgba(94,234,219,0.10);
+    --accent-border: rgba(94,234,219,0.32);
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --display: 'Space Grotesk', 'Inter', ui-sans-serif, sans-serif;
   }
 
-  *{box-sizing:border-box; margin:0; padding:0;}
-
+  *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
 
   body{
     background:var(--bg);
     color:var(--text);
-    font-family:'IBM Plex Sans', -apple-system, sans-serif;
-    line-height:1.6;
+    font-family:var(--display);
+    line-height:1.5;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
 
-  a{color:inherit;}
+  a{color:inherit;text-decoration:none;}
 
-  :focus-visible{
-    outline:2px solid var(--accent);
-    outline-offset:3px;
-    border-radius:2px;
-  }
-
-  .wrap{
-    max-width:var(--max-w);
-    margin:0 auto;
-    padding:0 28px;
-  }
-
-  /* ---------- header ---------- */
-
-  header.site{
-    position:sticky;
-    top:0;
-    z-index:10;
-    background:rgba(11,16,29,0.82);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border);
-  }
-
-  header.site .wrap{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    padding-top:18px;
-    padding-bottom:18px;
-  }
-
-  .brand{
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:600;
-    font-size:1rem;
-    letter-spacing:0.02em;
-  }
-
-  .brand .dot{ color:var(--accent); }
-
-  .site-tag{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.7rem;
-    letter-spacing:0.1em;
-    text-transform:uppercase;
-    color:var(--muted-2);
-  }
-
-  /* ---------- hero ---------- */
-
-  .hero{
-    position:relative;
-    overflow:hidden;
-    border-bottom:1px solid var(--border);
-  }
-
-  #hero-canvas{
-    position:absolute;
+  #pipeline-bg{
+    position:fixed;
     inset:0;
     width:100%;
     height:100%;
-    opacity:0.55;
+    z-index:0;
+    pointer-events:none;
   }
 
-  .hero-inner{
-    position:relative;
-    padding:96px 0 72px;
+  @media (prefers-reduced-motion: reduce){ #pipeline-bg{ display:none; } }
+
+  .content{ position:relative; z-index:1; }
+
+  /* ---------- nav ---------- */
+  header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:26px 6vw;
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(8px);
+    position:sticky;
+    top:0;
+    background:rgba(8,9,11,0.72);
+    z-index:10;
   }
 
-  .eyebrow{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.75rem;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--teal);
-    margin-bottom:18px;
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:var(--mono);
+    font-weight:600;
+    font-size:1.05rem;
+    letter-spacing:0.01em;
   }
+
+  .logo svg{ color:var(--accent); flex-shrink:0; }
+
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:2.6rem;
+    font-family:var(--mono);
+    font-size:0.92rem;
+    color:var(--muted);
+  }
+
+  nav a{ transition:color .15s ease; }
+  nav a:hover{ color:var(--text); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:96px 6vw 108px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    gap:11px;
+    font-family:var(--mono);
+    font-size:0.84rem;
+    color:var(--muted);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:9px 20px 9px 16px;
+    margin-bottom:52px;
+  }
+
+  .badge .dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 10px 1px var(--accent);
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes pulse{ 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 
   h1{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--display);
+    font-size:clamp(2.5rem, 5.6vw, 4.4rem);
+    line-height:1.06;
     font-weight:700;
-    font-size:clamp(1.9rem, 4.4vw, 3.1rem);
-    line-height:1.18;
-    letter-spacing:-0.01em;
-    max-width:16ch;
-    margin-bottom:22px;
+    letter-spacing:-0.025em;
+    max-width:920px;
   }
 
   h1 .accent{ color:var(--accent); }
 
-  .hero-sub{
-    font-size:1.08rem;
+  .hero p.lead{
+    margin-top:34px;
+    max-width:600px;
     color:var(--muted);
-    max-width:56ch;
-    margin-bottom:36px;
+    font-size:1.13rem;
+    line-height:1.72;
   }
 
-  .principles{
+  .hero-ctas{
     display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-  }
-
-  .principle{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.68rem;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--muted);
-    border:1px solid var(--border-strong);
-    border-radius:100px;
-    padding:7px 14px;
-    background:rgba(255,255,255,0.02);
-  }
-
-  /* ---------- projects ---------- */
-
-  .projects{
-    padding:64px 0 40px;
-  }
-
-  .section-head{
-    display:flex;
-    align-items:baseline;
-    justify-content:space-between;
-    margin-bottom:36px;
     gap:16px;
+    margin-top:46px;
     flex-wrap:wrap;
   }
 
-  .section-head h2{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.8rem;
+  .btn{
+    font-family:var(--mono);
+    font-size:0.94rem;
+    padding:16px 30px;
+    border-radius:7px;
+    cursor:pointer;
+    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    display:inline-block;
+  }
+
+  .btn-primary{
+    background:var(--accent);
+    color:#062421;
+    font-weight:600;
+    border:1px solid var(--accent);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); background:var(--accent-2); }
+
+  .btn-secondary{
+    border:1px solid var(--line);
+    color:var(--text);
+    background:transparent;
+  }
+  .btn-secondary:hover{ border-color:rgba(255,255,255,0.28); transform:translateY(-2px); }
+
+  /* ---------- sections ---------- */
+  section{
+    padding:104px 6vw;
+    border-top:1px solid var(--line);
+    max-width:1180px;
+    margin:0 auto;
+  }
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:0.84rem;
     letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--muted);
+    color:var(--accent);
+    margin-bottom:22px;
   }
 
-  .section-count{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.8rem;
-    color:var(--muted-2);
+  h2{
+    font-family:var(--display);
+    font-size:clamp(2.1rem, 4vw, 2.9rem);
+    font-weight:700;
+    letter-spacing:-0.015em;
+    margin-bottom:60px;
   }
 
-  .grid{
+  /* ---------- capabilities ---------- */
+  .cap-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(400px, 1fr));
-    gap:20px;
+    grid-template-columns:repeat(2, 1fr);
+    border:1px solid var(--line);
+    border-radius:12px;
+    overflow:hidden;
+    background:rgba(255,255,255,0.012);
   }
 
-  .card{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:6px;
-    padding:28px 28px 26px;
-    display:flex;
-    flex-direction:column;
-    transition:border-color 0.2s ease, transform 0.2s ease;
+  .cap-card{
+    padding:46px;
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    transition:background .2s ease;
+  }
+  .cap-card:hover{ background:rgba(255,255,255,0.015); }
+  .cap-card:nth-child(2n){ border-right:none; }
+  .cap-card:nth-last-child(-n+2){ border-bottom:none; }
+
+  .cap-icon{
+    color:var(--accent);
+    margin-bottom:24px;
+    display:block;
+    width:30px;
+    height:30px;
   }
 
-  .card:hover{
-    border-color:var(--border-strong);
-    transform:translateY(-2px);
-  }
-
-  .card-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
+  .cap-card h3{
+    font-family:var(--display);
+    font-size:1.4rem;
+    font-weight:700;
     margin-bottom:14px;
-    flex-wrap:wrap;
+    letter-spacing:-0.01em;
   }
+
+  .cap-card p{
+    color:var(--muted);
+    line-height:1.72;
+    margin-bottom:24px;
+  }
+
+  .tag-row{ display:flex; gap:10px; flex-wrap:wrap; }
 
   .tag{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.66rem;
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    color:var(--teal);
-    background:rgba(95,184,176,0.09);
-    border:1px solid rgba(95,184,176,0.25);
-    border-radius:100px;
-    padding:4px 10px;
-    white-space:nowrap;
-  }
-
-  .project-link{
-    font-family:'IBM Plex Mono', monospace;
+    font-family:var(--mono);
     font-size:0.78rem;
     color:var(--muted);
-    text-decoration:none;
-    border-bottom:1px solid transparent;
-    transition:color 0.15s ease, border-color 0.15s ease;
+    border:1px solid var(--line);
+    border-radius:5px;
+    padding:6px 12px;
   }
 
-  .project-link:hover{
-    color:var(--accent);
-    border-color:var(--accent);
+  /* ---------- work ---------- */
+  .work-item{
+    padding:46px 0;
+    border-top:1px solid var(--line-soft);
+    transition:padding-left .2s ease;
   }
+  .work-item:first-of-type{ border-top:1px solid var(--line); }
+  .work-item:hover{ padding-left:6px; }
 
-  h3.project-title{
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:700;
-    font-size:1.4rem;
-    margin-bottom:4px;
-  }
-
-  .project-title a{
-    text-decoration:none;
-  }
-
-  .project-title a:hover{
-    color:var(--accent);
-  }
-
-  .project-sub{
-    font-size:0.85rem;
-    color:var(--muted-2);
-    margin-bottom:14px;
-  }
-
-  .project-desc{
-    color:var(--muted);
-    font-size:0.95rem;
-    margin-bottom:16px;
-  }
-
-  ul.highlights{
-    list-style:none;
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-    margin-bottom:4px;
-  }
-
-  ul.highlights li{
-    position:relative;
-    padding-left:16px;
+  .work-year{
+    font-family:var(--mono);
+    color:var(--muted-dim);
     font-size:0.88rem;
-    color:var(--text);
-    opacity:0.88;
+    margin-bottom:20px;
   }
 
-  ul.highlights li::before{
-    content:"—";
-    position:absolute;
-    left:0;
-    color:var(--muted-2);
+  .work-title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:24px;
   }
 
-  .note{
+  .work-title-row h3{
+    font-family:var(--display);
+    font-size:1.65rem;
+    font-weight:700;
+    max-width:720px;
+    line-height:1.28;
+    letter-spacing:-0.01em;
+  }
+
+  .work-arrow{
+    color:var(--muted);
+    flex-shrink:0;
+    transition:transform .2s ease, color .2s ease;
+    margin-top:6px;
+  }
+  .work-item:hover .work-arrow{ color:var(--accent); transform:translate(3px,-3px); }
+
+  .work-meta{
+    font-family:var(--mono);
+    color:var(--muted);
+    font-size:0.88rem;
+    margin-top:12px;
+  }
+
+  .work-desc{
+    color:var(--muted);
+    line-height:1.72;
+    max-width:680px;
     margin-top:20px;
-    background:var(--note-bg);
-    border:1px solid rgba(224,164,88,0.28);
-    border-left:2px solid var(--accent);
-    border-radius:4px;
-    padding:14px 16px;
   }
 
-  .note-label{
-    display:block;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.68rem;
-    letter-spacing:0.06em;
+  .stat-pill{
+    display:inline-block;
+    margin-top:26px;
+    font-family:var(--mono);
+    font-size:0.82rem;
     color:var(--accent);
-    margin-bottom:6px;
+    border:1px solid var(--accent-border);
+    background:var(--accent-dim);
+    border-radius:6px;
+    padding:8px 16px;
   }
 
-  .note p{
+  /* ---------- contact ---------- */
+  .contact-badge{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:0.84rem;
+    color:var(--accent);
+    border:1px solid var(--accent-border);
+    background:var(--accent-dim);
+    border-radius:6px;
+    padding:8px 16px;
+    margin-bottom:64px;
+  }
+
+  .contact-title{ display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+
+  .cursor-block{
+    display:inline-block;
+    width:9px;
+    height:2.3rem;
+    background:var(--accent);
+    animation:blink 1.1s step-end infinite;
+  }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+  .contact-lead{
+    color:var(--muted);
+    font-size:1.13rem;
+    line-height:1.72;
+    max-width:600px;
+    margin-top:30px;
+    margin-bottom:50px;
+  }
+
+  .contact-links{ display:flex; flex-direction:column; gap:16px; max-width:660px; }
+  .contact-row{ display:flex; gap:16px; }
+
+  .contact-btn{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-family:var(--mono);
+    font-size:0.98rem;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:20px 24px;
+    flex:1;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .contact-btn:hover{ border-color:var(--accent-border); transform:translateY(-2px); }
+  .contact-btn svg{ color:var(--muted); flex-shrink:0; transition:color .15s ease; }
+  .contact-btn:hover svg{ color:var(--accent); }
+
+  .site-footer{
+    border-top:1px solid var(--line);
+    padding:34px 6vw 44px;
+    text-align:center;
+  }
+
+  .foot-links{
+    font-family:var(--mono);
     font-size:0.86rem;
     color:var(--muted);
   }
 
-  .note p + p{ margin-top:8px; }
+  .foot-links a{ transition:color .15s ease; }
+  .foot-links a:hover{ color:var(--accent); }
 
-  /* ---------- footer ---------- */
+  .foot-dot{ margin:0 12px; color:var(--muted-dim); }
 
-  footer{
-    border-top:1px solid var(--border);
-    padding:36px 0 48px;
-  }
-
-  footer .wrap{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:12px;
-  }
-
-  footer p{
-    font-size:0.82rem;
-    color:var(--muted-2);
-    max-width:52ch;
-  }
-
-  footer p a{
-    color:var(--muted-2);
-  }
-
-  footer p a:hover,
-  footer p a:focus-visible{
-    color:var(--accent);
-  }
-
-  footer .foot-mark{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.75rem;
-    color:var(--muted-2);
-    text-decoration:none;
-    border-bottom:1px solid transparent;
-  }
-
-  footer .foot-mark:hover,
-  footer .foot-mark:focus-visible{
-    color:var(--accent);
-    border-bottom-color:var(--accent);
-  }
-
-  footer .foot-links{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:0.72rem;
-    color:var(--muted-2);
-  }
-
-  footer .foot-links a{
-    color:var(--muted-2);
-    text-decoration:none;
-  }
-
-  footer .foot-links a:hover,
-  footer .foot-links a:focus-visible{
-    color:var(--accent);
-    text-decoration:underline;
-  }
-
-  footer .foot-links .dot{
-    margin:0 6px;
-    opacity:0.6;
-  }
-
-  @media (max-width:600px){
-    .hero-inner{ padding:64px 0 48px; }
-    .projects{ padding:48px 0 24px; }
-    .card{ padding:22px; }
-    .grid{ grid-template-columns:1fr; }
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
-  }
-
-  /* ---------- accessibility utilities ---------- */
-
-  .sr-only{
-    position:absolute;
-    width:1px; height:1px;
-    padding:0; margin:-1px;
-    overflow:hidden;
-    clip:rect(0,0,0,0);
-    white-space:nowrap;
-    border:0;
-  }
-
-  .skip-link{
-    position:absolute;
-    left:12px;
-    top:-60px;
-    background:var(--accent);
-    color:#0b101d;
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:600;
-    font-size:0.85rem;
-    padding:10px 18px;
-    border-radius:4px;
-    text-decoration:none;
-    z-index:1000;
-    transition:top 0.15s ease;
-  }
-
-  .skip-link:focus{
-    top:12px;
-    outline:2px solid var(--bg);
-    outline-offset:2px;
+  @media (max-width:760px){
+    .cap-grid{ grid-template-columns:1fr; }
+    .cap-card{ border-right:none; }
+    .cap-card:nth-last-child(-n+2){ border-bottom:1px solid var(--line); }
+    .cap-card:last-child{ border-bottom:none; }
+    nav ul{ display:none; }
+    .contact-row{ flex-direction:column; }
+    .work-title-row{ flex-direction:row; }
+    h1{ max-width:100%; }
   }
 </style>
 </head>
 <body>
 
-<a class="skip-link" href="#main-content">Skip to main content</a>
+<canvas id="pipeline-bg"></canvas>
 
-<header class="site">
-  <div class="wrap">
-    <span class="brand">rethy11<span class="dot">.</span></span>
-    <span class="site-tag">Engineering / Security Portfolio</span>
+<div class="content">
+
+<header>
+  <div class="logo">
+    <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    Ryan Guendjoian
   </div>
+  <nav>
+    <ul>
+      <li><a href="#expertise">expertise</a></li>
+      <li><a href="#work">work</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
 </header>
 
-<section class="hero" aria-label="Introduction">
-  <canvas id="hero-canvas" aria-hidden="true" role="presentation"></canvas>
-  <div class="wrap hero-inner">
-    <p class="eyebrow">Project Index — 2026</p>
-    <h1>Five shipped systems. <span class="accent">No BS.</span></h1>
-    <p class="hero-sub">Solo-built, end to end. Engines, generators, diagnostics, and auth.</p>
-    <div class="principles">
-      <span class="principle">Defensive by default</span>
-      <span class="principle">Minimal attack surface</span>
-      <span class="principle">Sandboxed execution</span>
-      <span class="principle">Real trust boundaries</span>
-      <span class="principle">End-to-end ownership</span>
+<section class="hero" style="border-top:none;">
+  <div class="badge"><span class="dot"></span> open to information security &amp; GRC roles</div>
+  <h1>I turn security risk into <span class="accent">decisions people can act on.</span></h1>
+  <p class="lead">Ryan Guendjoian — Information Security &amp; GRC analyst, CompTIA Security+ (SY0-701) certified. I run risk assessments, evaluate controls, and translate technical findings into remediation plans that stakeholders can actually execute.</p>
+  <div class="hero-ctas">
+    <a href="#contact" class="btn btn-primary">start a conversation</a>
+    <a href="#work" class="btn btn-secondary">view case studies</a>
+  </div>
+</section>
+
+<section id="expertise">
+  <div class="eyebrow">01 / CAPABILITIES</div>
+  <h2>Where I spend my time</h2>
+  <div class="cap-grid">
+    <div class="cap-card">
+      <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/></svg>
+      <h3>Risk Assessment &amp; Treatment</h3>
+      <p>Structured internal risk assessments and security control evaluations that surface real gaps, prioritized into remediation plans stakeholders can execute.</p>
+      <div class="tag-row">
+        <span class="tag">Risk Assessment</span>
+        <span class="tag">Remediation</span>
+        <span class="tag">GRC</span>
+      </div>
+    </div>
+    <div class="cap-card">
+      <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <h3>Framework Alignment</h3>
+      <p>Mapping controls and evidence to ISO 27001, SOC 2, and PCI DSS concepts, keeping compliance monitoring grounded in what the framework actually requires.</p>
+      <div class="tag-row">
+        <span class="tag">ISO 27001</span>
+        <span class="tag">SOC 2</span>
+        <span class="tag">PCI DSS</span>
+      </div>
+    </div>
+    <div class="cap-card">
+      <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <h3>Technical Control Validation</h3>
+      <p>Hands-on validation of technical and administrative controls with Nessus, OpenVAS, Nmap, Wireshark, and Burp Suite to confirm posture matches policy.</p>
+      <div class="tag-row">
+        <span class="tag">Nessus</span>
+        <span class="tag">Burp Suite</span>
+        <span class="tag">Nmap</span>
+      </div>
+    </div>
+    <div class="cap-card">
+      <svg class="cap-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <h3>Security Reporting &amp; Stakeholder Comms</h3>
+      <p>Security questionnaires, audit support, and reporting that translates technical findings into business-relevant impact for technical and executive audiences.</p>
+      <div class="tag-row">
+        <span class="tag">Reporting</span>
+        <span class="tag">Audits</span>
+        <span class="tag">Stakeholder Comms</span>
+      </div>
     </div>
   </div>
 </section>
 
-<main class="projects" id="main-content">
-  <div class="wrap">
-    <div class="section-head">
-      <h2 id="projects-heading">Projects</h2>
-      <span class="section-count">05 live</span>
+<section id="work">
+  <div class="eyebrow">02 / SELECTED WORK</div>
+  <h2>Five shipped systems, solo end to end</h2>
+
+  <div class="work-item">
+    <div class="work-year">Auth / 2FA</div>
+    <div class="work-title-row">
+      <h3>Access — Firebase phone-based two-factor verification</h3>
+      <a href="https://rethy11.github.io/phone-verif" target="_blank" rel="noopener noreferrer"><svg class="work-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </div>
+    <div class="work-meta">rethy11.github.io/phone-verif</div>
+    <p class="work-desc">Integrated Firebase Phone Auth for a genuine, server-verified SMS one-time-passcode second factor, gated by a capture-phase allowlist check and reCAPTCHA-backed request validation. Identified and documented the trust boundary between client-enforced checks and server-verified auth, then defined the remediation path to close it.</p>
+    <span class="stat-pill">Server-verified 2nd factor</span>
+  </div>
 
-    <div class="grid" role="list" aria-labelledby="projects-heading">
-
-      <!-- Owldoku -->
-      <article class="card" role="listitem" aria-labelledby="owldoku-title">
-        <div class="card-head">
-          <span class="tag">Puzzle Generator</span>
-          <a class="project-link" href="https://owldoku.com" target="_blank" rel="noopener noreferrer">owldoku.com <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
-        <h3 class="project-title" id="owldoku-title"><a href="https://owldoku.com" target="_blank" rel="noopener noreferrer">Owldoku<span class="sr-only"> (opens in a new tab)</span></a></h3>
-        <p class="project-sub">Queens-style puzzle game, custom ruleset, shipped solo from domain registration through Terms of Service authorship and ad-network integration.</p>
-        <p class="project-desc">Built around a constraint-satisfaction generator. The "No Lines" mode layers a diagonal-exclusivity rule on top of standard placement constraints — getting a solvable, well-formed board out of that meant generating and validating millions of candidates through backtracking search.</p>
-        <ul class="highlights" role="list">
-          <li>Shared puzzles arrive as user-controlled URL codes, parsed through a dedicated validator and never trusted or rendered directly.</li>
-          <li>Screenshot/share feature clones the result card off-screen and re-namespaces SVG IDs to avoid collisions with the live page.</li>
-          <li>Best times and onboarding state persist through a defensively-wrapped storage layer that degrades gracefully on failure.</li>
-          <li>ResizeObserver-driven board sizing with pointer-event handling for consistent behavior across devices.</li>
-        </ul>
-      </article>
-
-      <!-- Slime Sliders -->
-      <article class="card" role="listitem" aria-labelledby="slime-title">
-        <div class="card-head">
-          <span class="tag">Game Engine</span>
-          <a class="project-link" href="https://rethy11.github.io/Slime-Sliders" target="_blank" rel="noopener noreferrer">rethy11.github.io/Slime-Sliders <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
-        <h3 class="project-title" id="slime-title"><a href="https://rethy11.github.io/Slime-Sliders" target="_blank" rel="noopener noreferrer">Slime Sliders<span class="sr-only"> (opens in a new tab)</span></a></h3>
-        <p class="project-sub">~12,000-line buttery smooth game engine</p>
-        <p class="project-desc">Canvas rendering, custom physics, and procedural level generation.</p>
-        <ul class="highlights" role="list">
-          <li>Spatial hash grids handle collision detection for trees, fences, and terrain — near-constant-time lookups instead of naive all-pairs checks.</li>
-          <li>A storage wrapper with an in-memory fallback keeps the game running when localStorage is blocked or unavailable.</li>
-          <li>Currency and state writes are batched and throttled rather than fired on every event, avoiding synchronous-write frame stalls.</li>
-          <li>A crossfading audio state machine uses token-based cancellation to prevent race conditions between overlapping transitions.</li>
-        </ul>
-      </article>
-
-      <!-- Access / phone-verif -->
-      <article class="card" role="listitem" aria-labelledby="access-title">
-        <div class="card-head">
-          <span class="tag">Auth / 2FA</span>
-          <a class="project-link" href="https://rethy11.github.io/phone-verif" target="_blank" rel="noopener noreferrer">rethy11.github.io/phone-verif <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
-        <h3 class="project-title" id="access-title"><a href="https://rethy11.github.io/phone-verif" target="_blank" rel="noopener noreferrer">Access<span class="sr-only"> (opens in a new tab)</span></a></h3>
-        <p class="project-sub">Firebase Phone Authentication (SMS OTP) + reCAPTCHA</p>
-        <p class="project-desc">A password-and-phone-gated landing page wired to a real SMS one-time-passcode flow through Firebase's modular SDK, with an invisible reCAPTCHA and a four-step UI state machine (password → phone → code → granted).</p>
-        <ul class="highlights" role="list">
-          <li>Phone ownership is verified server-side by Firebase via the SMS code — a genuine second factor, not a local check.</li>
-          <li>A capture-phase listener runs the phone-allowlist check before reCAPTCHA's own bubble-phase handler, so an unlisted number never triggers a real, billable challenge.</li>
-          <li>Failed sign-in attempts surface Firebase's actual error and cleanly reset the reCAPTCHA widget for a fresh attempt.</li>
-        </ul>
-        <div class="note" role="note" aria-label="Engineering note">
-          <span class="note-label">// engineering note</span>
-          <p>The password check and phone allowlist run entirely client-side — viewing source reveals both. That's a described limitation, not a claimed access-control boundary. The SMS verification itself is genuinely enforced server-side by Firebase.</p>
-        </div>
-      </article>
-
-      <!-- Load-Watt -->
-      <article class="card" role="listitem" aria-labelledby="loadwatt-title">
-        <div class="card-head">
-          <span class="tag">Diagnostics / Instrumentation</span>
-          <a class="project-link" href="https://rethy11.github.io/Load-Watt" target="_blank" rel="noopener noreferrer">rethy11.github.io/Load-Watt <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
-        <h3 class="project-title" id="loadwatt-title"><a href="https://rethy11.github.io/Load-Watt" target="_blank" rel="noopener noreferrer">Load-Watt<span class="sr-only"> (opens in a new tab)</span></a></h3>
-        <p class="project-sub">Browser performance &amp; power-diagnostics tool</p>
-        <p class="project-desc">Built because nothing off-the-shelf could pinpoint what was draining battery or causing jank in the other projects. Runtime instrumentation and sandboxing rather than game logic.</p>
-        <ul class="highlights" role="list">
-          <li>Wraps every timer callback, DOM listener, and top-level function in a target file with timing shims — an aspect-oriented profiler injected at runtime.</li>
-          <li>Target code runs inside a sandboxed same-origin iframe; the tool snapshots the baseline global namespace and diffs it afterward to see what the code introduced.</li>
-          <li>Pulls repo structure from the GitHub API and explicitly surfaces rate-limit headers with an actionable error instead of failing silently.</li>
-          <li>Computes Total Blocking Time, dropped-frame rate, and main-thread-busy percentage, exported as a structured JSON report.</li>
-          <li>Run against Owldoku's own codebase, it found and fixed the source of battery drain — from roughly 1% per 30 seconds to 1% per 10 minutes on mobile.</li>
-        </ul>
-      </article>
-
-      <!-- Slopless -->
-      <article class="card" role="listitem" aria-labelledby="slopless-title">
-        <div class="card-head">
-          <span class="tag">Utility</span>
-          <a class="project-link" href="https://rethy11.github.io/Slopless" target="_blank" rel="noopener noreferrer">rethy11.github.io/Slopless <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
-        </div>
-        <h3 class="project-title" id="slopless-title"><a href="https://rethy11.github.io/Slopless" target="_blank" rel="noopener noreferrer">Slopless<span class="sr-only"> (opens in a new tab)</span></a></h3>
-        <p class="project-sub">Minimal, fast search redirector</p>
-        <p class="project-desc">Smaller in scope, but a clean example of privacy-conscious front-end fundamentals — the entire client-side footprint is a search form and an ambient background animation.</p>
-        <ul class="highlights" role="list">
-          <li>No analytics, telemetry, or third-party data collection anywhere in the code — the privacy stance is enforced by what's (and isn't) there.</li>
-          <li>Detects iOS Safari versus the Chrome app and launches queries directly into Chrome via its custom URL scheme, falling back to a standard new tab elsewhere.</li>
-          <li>A cursor-reactive canvas animation respects prefers-reduced-motion and disables fully for users who need that.</li>
-          <li>Screen-reader-visible form labels, visible focus states, and a semantic, keyboard-submittable form.</li>
-        </ul>
-      </article>
-
+  <div class="work-item">
+    <div class="work-year">Diagnostics</div>
+    <div class="work-title-row">
+      <h3>Load-Watt — browser performance &amp; power diagnostics tool</h3>
+      <a href="https://rethy11.github.io/Load-Watt" target="_blank" rel="noopener noreferrer"><svg class="work-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </div>
+    <div class="work-meta">rethy11.github.io/Load-Watt</div>
+    <p class="work-desc">Sandboxes and instruments untrusted code inside an isolated same-origin frame, using Performance Observer APIs to quantify long tasks, main-thread load, and dropped frames. Pulls repo data via the GitHub REST API with clear rate-limit handling, and cut a production app's measured resource consumption roughly 20x.</p>
+    <span class="stat-pill">~20x lower resource use</span>
   </div>
-</main>
 
-<footer>
-  <div class="wrap">
-    <p>Contact me at <a href="https://instagram.com/plasticinegames" target="_blank" rel="noopener noreferrer">plasticinegames on Instagram<span class="sr-only"> (opens in a new tab)</span></a> for more info!</p>
-    <a class="foot-mark" href="https://github.com/rethy11" target="_blank" rel="noopener noreferrer">github.com/rethy11<span class="sr-only"> (opens in a new tab)</span></a>
+  <div class="work-item">
+    <div class="work-year">Puzzle Generator</div>
+    <div class="work-title-row">
+      <h3>Owldoku — constraint-satisfaction puzzle generator</h3>
+      <a href="https://owldoku.com" target="_blank" rel="noopener noreferrer"><svg class="work-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+    <div class="work-meta">owldoku.com</div>
+    <p class="work-desc">Queens-style puzzle game shipped solo from domain registration through Terms of Service authorship and ad-network integration. Its "No Lines" mode layers a diagonal-exclusivity rule on top of standard placement constraints, validated through backtracking search over millions of candidate boards. Shared puzzles arrive as user-controlled URL codes, parsed through a dedicated validator and never trusted directly.</p>
+    <span class="stat-pill">Millions of boards validated</span>
   </div>
-  <nav class="wrap" style="justify-content:center; margin-top:14px;" aria-label="Site pages">
-    <span class="foot-links">
-      <a href="about.html">About</a><span class="dot" aria-hidden="true">·</span><a href="privacy.html">Privacy</a><span class="dot" aria-hidden="true">·</span><a href="terms.html">Terms</a>
-    </span>
-  </nav>
+
+  <div class="work-item">
+    <div class="work-year">Game Engine</div>
+    <div class="work-title-row">
+      <h3>Slime Sliders — ~12,000-line game engine</h3>
+      <a href="https://rethy11.github.io/Slime-Sliders" target="_blank" rel="noopener noreferrer"><svg class="work-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+    <div class="work-meta">rethy11.github.io/Slime-Sliders</div>
+    <p class="work-desc">Canvas rendering, custom physics, and procedural level generation. Spatial hash grids handle collision detection at near-constant time, currency and state writes are batched to avoid frame stalls, and a token-based crossfading audio state machine prevents race conditions between overlapping transitions.</p>
+    <span class="stat-pill">~12k lines, solo-built</span>
+  </div>
+
+  <div class="work-item">
+    <div class="work-year">Utility</div>
+    <div class="work-title-row">
+      <h3>Slopless — minimal, privacy-conscious search redirector</h3>
+      <a href="https://rethy11.github.io/Slopless" target="_blank" rel="noopener noreferrer"><svg class="work-arrow" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+    </div>
+    <div class="work-meta">rethy11.github.io/Slopless</div>
+    <p class="work-desc">No analytics, telemetry, or third-party data collection anywhere in the code — the privacy stance is enforced by what's (and isn't) there. Detects iOS Safari versus the Chrome app to launch queries directly into Chrome, with screen-reader-visible labels and a fully keyboard-submittable form.</p>
+    <span class="stat-pill">Zero analytics/telemetry</span>
+  </div>
+</section>
+
+<section id="contact">
+  <span class="contact-badge">5 shipped projects, solo end to end</span>
+  <div class="eyebrow">03 / CONTACT</div>
+  <h2 class="contact-title" style="margin-bottom:0;">Let's talk risk<span class="cursor-block"></span></h2>
+  <p class="contact-lead">Risk assessments, control validation, or a second set of eyes on your compliance posture — send a note and I'll reply within a day.</p>
+
+  <div class="contact-links">
+    <a href="mailto:entomology123@gmail.com" class="contact-btn">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+      entomology123@gmail.com
+    </a>
+    <div class="contact-row">
+      <a href="tel:+19412249970" class="contact-btn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (941) 224-9970
+      </a>
+      <a href="https://github.com/rethy11" class="contact-btn">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        github/rethy11
+      </a>
+    </div>
+    <a href="https://rethy11.github.io" class="contact-btn">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      rethy11.github.io
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="foot-links">
+    <a href="about.html">About</a><span class="foot-dot">·</span><a href="privacy.html">Privacy</a><span class="foot-dot">·</span><a href="terms.html">Terms</a>
+  </div>
 </footer>
 
+</div>
+
 <script>
-  // Subtle drifting dot-grid in the hero, paused for reduced-motion users.
-  (function(){
-    var canvas = document.getElementById('hero-canvas');
-    var ctx = canvas.getContext('2d');
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    var w, h, dots = [];
-    var mouseX = 0.5, mouseY = 0.3;
-    var spacing = 46;
+/* ---------------------------------------------------------
+   Ambient "data pipeline" background: horizontal/vertical
+   circuit-like traces with discrete packets travelling
+   along them, evoking telemetry moving through a detection
+   pipeline. Low opacity, slow, non-distracting.
+--------------------------------------------------------- */
+(function(){
+  const canvas = document.getElementById('pipeline-bg');
+  const ctx = canvas.getContext('2d');
+  let w, h, dpr;
+  let tracks = [];   // orthogonal line segments (the "pipes")
+  let packets = [];  // dots travelling along tracks
+  let nodes = [];     // junction points, softly glowing
 
-    function resize(){
-      var rect = canvas.parentElement.getBoundingClientRect();
-      w = rect.width; h = rect.height;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      canvas.style.width = w + 'px';
-      canvas.style.height = h + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      buildDots();
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion) return;
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = window.innerWidth;
+    h = document.documentElement.scrollHeight;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    buildPipeline();
+  }
+
+  // Build an orthogonal "circuit" of tracks: a set of horizontal
+  // lanes and vertical connectors, like a PCB / data pipeline map.
+  function buildPipeline(){
+    tracks = [];
+    nodes = [];
+    const laneCount = Math.max(5, Math.round(h / 240));
+    const laneGap = h / laneCount;
+
+    for(let i=0;i<laneCount;i++){
+      const y = laneGap * (i + 0.5) + (Math.random()-0.5)*laneGap*0.3;
+      const segStart = Math.random() * w * 0.15;
+      const segEnd = w - Math.random() * w * 0.15;
+      tracks.push({type:'h', y, x1:segStart, x2:segEnd});
+      nodes.push({x:segStart, y});
+      nodes.push({x:segEnd, y});
     }
 
-    function buildDots(){
-      dots = [];
-      var cols = Math.ceil(w / spacing) + 2;
-      var rows = Math.ceil(h / spacing) + 2;
-      for (var i = 0; i < cols; i++){
-        for (var j = 0; j < rows; j++){
-          dots.push({
-            baseX: i * spacing,
-            baseY: j * spacing,
-            phase: Math.random() * Math.PI * 2
-          });
-        }
-      }
+    // vertical connectors linking some lanes together
+    const connectorCount = Math.max(6, Math.round(w / 260));
+    for(let i=0;i<connectorCount;i++){
+      const x = (w / connectorCount) * (i + 0.5) + (Math.random()-0.5)*80;
+      const laneA = Math.floor(Math.random()*laneCount);
+      let laneB = Math.floor(Math.random()*laneCount);
+      if(laneB === laneA) laneB = (laneB+1) % laneCount;
+      const yA = tracks[laneA].y, yB = tracks[laneB].y;
+      const yTop = Math.min(yA, yB), yBot = Math.max(yA, yB);
+      tracks.push({type:'v', x, y1:yTop, y2:yBot});
+      nodes.push({x, y:yTop});
+      nodes.push({x, y:yBot});
     }
 
-    function draw(t){
-      ctx.clearRect(0, 0, w, h);
-      var time = t * 0.00035;
-      for (var k = 0; k < dots.length; k++){
-        var d = dots[k];
-        var dx = (mouseX - 0.5) * 14;
-        var dy = (mouseY - 0.5) * 14;
-        var drift = reduceMotion ? 0 : Math.sin(time + d.phase) * 3;
-        var x = d.baseX + dx + drift;
-        var y = d.baseY + dy + drift * 0.6;
+    packets = [];
+    const packetCount = Math.min(34, Math.round(tracks.length * 1.1));
+    for(let i=0;i<packetCount;i++) spawnPacket();
+  }
 
-        var distToMouse = Math.hypot(x - mouseX * w, y - mouseY * h);
-        var falloff = Math.max(0, 1 - distToMouse / 260);
-        var r = 1 + falloff * 1.4;
-        var alpha = 0.10 + falloff * 0.35;
-
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fillStyle = falloff > 0.15
-          ? 'rgba(224,164,88,' + alpha.toFixed(3) + ')'
-          : 'rgba(95,184,176,' + alpha.toFixed(3) + ')';
-        ctx.fill();
-      }
-      if (!reduceMotion) requestAnimationFrame(draw);
-    }
-
-    window.addEventListener('resize', resize);
-    window.addEventListener('mousemove', function(e){
-      var rect = canvas.getBoundingClientRect();
-      mouseX = (e.clientX - rect.left) / rect.width;
-      mouseY = (e.clientY - rect.top) / rect.height;
+  function spawnPacket(){
+    if(tracks.length===0) return;
+    const track = tracks[Math.floor(Math.random()*tracks.length)];
+    packets.push({
+      track,
+      t: Math.random(),
+      speed: 0.0009 + Math.random()*0.0016,
+      size: 1.6 + Math.random()*1.6
     });
+  }
 
-    resize();
+  function trackPoint(track, t){
+    if(track.type === 'h'){
+      return { x: track.x1 + (track.x2-track.x1)*t, y: track.y };
+    }else{
+      return { x: track.x, y: track.y1 + (track.y2-track.y1)*t };
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+
+    // traces
+    ctx.strokeStyle = 'rgba(94,234,219,0.075)';
+    ctx.lineWidth = 1;
+    for(const t of tracks){
+      ctx.beginPath();
+      if(t.type==='h'){ ctx.moveTo(t.x1, t.y); ctx.lineTo(t.x2, t.y); }
+      else{ ctx.moveTo(t.x, t.y1); ctx.lineTo(t.x, t.y2); }
+      ctx.stroke();
+    }
+
+    // junction nodes
+    ctx.fillStyle = 'rgba(94,234,219,0.16)';
+    for(const n of nodes){
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 1.6, 0, Math.PI*2);
+      ctx.fill();
+    }
+
+    // travelling packets
+    for(const p of packets){
+      const pt = trackPoint(p.track, p.t);
+
+      const grad = ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,9);
+      grad.addColorStop(0, 'rgba(150,255,240,0.85)');
+      grad.addColorStop(1, 'rgba(150,255,240,0)');
+      ctx.beginPath();
+      ctx.fillStyle = grad;
+      ctx.arc(pt.x,pt.y,7,0,Math.PI*2);
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(225,255,250,0.9)';
+      ctx.arc(pt.x,pt.y,p.size,0,Math.PI*2);
+      ctx.fill();
+
+      p.t += p.speed;
+      if(p.t >= 1){
+        p.t = 0;
+        p.track = tracks[Math.floor(Math.random()*tracks.length)];
+      }
+    }
+
     requestAnimationFrame(draw);
-    if (reduceMotion) draw(0);
-  })();
+  }
+
+  function debounce(fn, ms){ let t; return function(){ clearTimeout(t); t=setTimeout(fn, ms); }; }
+  window.addEventListener('resize', debounce(resize, 250));
+
+  resize();
+  requestAnimationFrame(draw);
+})();
 </script>
 
 </body>
